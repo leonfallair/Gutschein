@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gutschein</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000; /* schwarzer Hintergrund */
+            font-family: Arial, sans-serif;
+        }
+
+        #play-button {
+            padding: clamp(15px, 4vw, 30px) clamp(25px, 6vw, 50px);
+            font-size: clamp(16px, 4vw, 24px);
+            background-color: #ffffff;
+            color: #000;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        #play-button:hover {
+            background-color: #ff4500;
+            color: #fff;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <button id="play-button">Klicke hier um einen Gutschein zu erhalten</button>
+    <audio id="reality-audio" src="audio/gutschein.wav"></audio>
+
+    <script>
+        const button = document.getElementById('play-button');
+        const audio = document.getElementById('reality-audio');
+
+        button.addEventListener('click', () => {
+            if(audio.paused) {
+                audio.play().catch(err => console.log("Autoplay blockiert:", err));
+                button.textContent = "▶ Du hast dir eben einen Gutschein verdient";
+            } else {
+                audio.pause();
+                button.textContent = "Klicke hier um den Gutschein zu erhalten";
+            }
+        });
+    </script>
+</body>
+</html>
